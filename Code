@@ -1,0 +1,169 @@
+
+// Problem 1 - Swapping Min Max
+
+import java.util.*;
+public class MandarkAssignment{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        ArrayList<Integer> list1 = new ArrayList<>();
+        ArrayList<Integer> list2 = new ArrayList<>();
+        for(int i=0;i<n;i++){
+            list1.add(sc.nextInt());
+        }
+        for(int i=0;i<n;i++){
+            list2.add(sc.nextInt());
+        }
+        int result = minMax(list1, list2);
+        System.out.println(result);
+    }
+    public static int minMax(List<Integer> list1, List<Integer> list2){
+        int n = list1.size();
+        for(int i=0;i<n;i++){
+            if(list1.get(i)<list2.get(i)){
+                int temp1 = list1.get(i);
+                int temp2 = list2.get(i);
+                list1.set(i, temp2);
+                list2.set(i, temp1);
+            }
+        }
+        int max1 = Integer.MIN_VALUE;
+        int max2 = Integer.MIN_VALUE;
+        for(int i=0;i<n;i++){
+            max1 = Math.max(max1, list1.get(i));
+            max2 = Math.max(max2, list2.get(i));
+        }
+        return max1*max2;
+    }
+}
+
+// Problem 5 - Perfect Number
+
+import java.util.*;
+public class Main{
+
+    public static void main (String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        boolean result = isPerfectNumber(n);
+        System.out.println(result);
+    }
+    public static boolean isPerfectNumber(int n){
+        int sum = 0;
+        for(int i=1;i<=n/2;i++){
+            if(n%i == 0){
+                sum+=i;
+            }
+        }
+        return sum == n;
+    }
+}
+
+
+// problem no-3
+
+ import java.util.*;
+ public class MandarkAssignment{
+     public static void main(String[] args) {
+         Scanner sc = new Scanner (System.in);
+         int n = sc.nextInt();
+         ArrayList <String> list = new ArrayList<>();
+         for(int i=0;i<n;i++){
+             list.add(sc.next());
+         }
+         firstCondition(list);
+         System.out.println();
+         secondCondition(list);
+     }
+     public static void firstCondition(List<String> list){
+         int n = list.size();
+         LinkedHashMap<Character,List<String>> map = new LinkedHashMap<>();
+         for(String str : list){
+             char ch = str.charAt(0);
+             if(!map.containsKey(ch)){
+                 map.put(ch, new ArrayList<>());
+             }
+             map.get(ch).add(str);
+         }
+         for(char ch ='a';ch<='z';ch++){
+             if(map.containsKey(ch)){
+                 int tempSize = map.get(ch).size();
+                 for(int i=0;i<tempSize;i++){
+                     System.out.print(map.get(ch).get(i)+" ");
+                 }
+             }
+         }
+     }
+     public static void secondCondition(List<String> list){
+         Collections.sort(list);
+         Map<Character, List<String>> map = new HashMap<>(); 
+         for (String string : list) {
+             char ch = string.charAt(0);
+             if (!map.containsKey(ch)) {
+                 map.put(ch, new ArrayList<>());
+             }
+             map.get(ch).add(string);
+         }
+         for (List<String> key : map.values()) {
+             Collections.sort(key, new Comparator<String>() {
+                 @Override
+                 public int compare(String o1, String o2) {
+                     int num1 = Integer.parseInt(o1.substring(1));
+                     int num2 = Integer.parseInt(o2.substring(1));
+                     return num2-num1;
+                 }
+             });
+         }
+         for(char ch ='a';ch<='z';ch++){
+             if(map.containsKey(ch)){
+                 int tempSize = map.get(ch).size();
+                 for(int i=0;i<tempSize;i++){
+                     System.out.print(map.get(ch).get(i)+" ");
+                 }
+             }
+         }
+     }
+ }
+
+ // Problem 2 - Employee Listings
+ // SQL 
+
+// Steps to solve Question No. - 2.
+ step :- 1
+ // Creating a data base
+ // command for creating a database is
+ create database database_name;
+ step :- 2
+ // use this database (database name = mandark)
+ // command to use data base is
+ use database_name;
+ step :- 3
+ // creating table
+ // command for creating the table is
+ create table table_name (name varchar(15),role varchar(15), division varchar(15));
+
+// describing the table to see the info
+desc mandark;
+
+ // command for inserting the values
+ insert into mandark values('Hari Ram','Team-Lead','R&D');
+
+ // As per the question
+
+
+// Part :- 1
+// SQL Query
+SELECT * FROM employee_info WHERE role='manager' AND division='R&D';
+
+// Part :- 2
+SELECT * FROM employee_info WHERE name NOT LIKE '% %';
+// it means we're selecting only where there is no <space> in name column
+
+
+/*
+ *  Name of my database :- mandark
+ *  Name of my table :- employee_info
+ * 
+ *  Here I am using // for comment because I am using VS Code.
+ *  Technically I should have used # to represent comment for SQL Queries.
+*/
